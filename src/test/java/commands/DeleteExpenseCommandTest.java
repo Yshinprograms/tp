@@ -19,11 +19,32 @@ public class DeleteExpenseCommandTest {
     private Summary summary;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws BudgetTrackerException {
         expenseList = new ExpenseList();
         ui = new Ui();
-        summary = new Summary();
-
+        summary = Summary.getInstance();
+        // Reset the summary state to ensure tests don't interfere with each other
+        resetSummary();
+    }
+    
+    /**
+     * Helper method to reset the Summary object to initial state
+     */
+    private void resetSummary() throws BudgetTrackerException {
+        // Reset income if needed
+        if (summary.getTotalIncome() > 0) {
+            summary.removeIncome(summary.getTotalIncome());
+        }
+        
+        // Reset expenses if needed
+        if (summary.getTotalExpense() > 0) {
+            summary.removeExpense(summary.getTotalExpense());
+        }
+        
+        // Reset savings if needed
+        if (summary.getTotalSavings() > 0) {
+            summary.removeSavings(summary.getTotalSavings());
+        }
     }
 
     @Test
@@ -44,6 +65,5 @@ public class DeleteExpenseCommandTest {
         view.execute(expenseList, ui);
 
         assertEquals(1, expenseList.getExpenses().size(), "Expense list should contain 1 expenses.");
-
     }
 }

@@ -26,7 +26,7 @@ public class Duke {
 
         // Initialize components
         Scanner in = new Scanner(System.in);
-        Summary summary = new Summary();
+        Summary summary = Summary.getInstance();
         SummaryDisplay summaryDisplay = new SummaryDisplay(summary);
         HelpDisplay helpDisplay = new HelpDisplay();
         Ui ui = new Ui();

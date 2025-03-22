@@ -5,24 +5,39 @@ import exceptions.BudgetTrackerException;
 /**
  * Represents a financial summary, storing total income, expenses, balance, and savings.
  * Provides methods for adding and removing income, expenses, and savings.
+ * Implemented as a Singleton to ensure only one instance exists in the application.
  */
 public class Summary {
     private double totalIncome;
     private double totalExpense;
     private double totalSavings;
 
+    private static Summary instance;
+    
     /**
+     * Private constructor to prevent external instantiation.
      * Constructs a new Summary object with all values initialized to 0.
      */
-    public Summary() {
+    private Summary() {
         totalIncome = 0;
         totalExpense = 0;
         totalSavings = 0;
-        
-        // Assertion to verify initial state
+
         assert totalIncome == 0 : "Initial income should be 0";
         assert totalExpense == 0 : "Initial expense should be 0";
         assert totalSavings == 0 : "Initial savings should be 0";
+    }
+    
+    /**
+     * Gets the singleton instance of Summary, creating it if it doesn't exist.
+     * 
+     * @return The singleton instance of Summary.
+     */
+    public static Summary getInstance() {
+        if (instance == null) {
+            instance = new Summary();
+        }
+        return instance;
     }
 
     /**
@@ -46,13 +61,13 @@ public class Summary {
     }
 
     /**
-     * Gets the available funds (calculated as income - expenses).
+     * Gets the spendable funds (calculated as income - expenses - savings).
      * This represents the amount available for spending or saving.
      *
      * @return The available funds.
      */
-    public double getAvailableFunds() {
-        return totalIncome - totalExpense;
+    public double getSpendableFunds() {
+        return totalIncome - totalExpense - totalSavings;
     }
 
     /**
@@ -62,7 +77,7 @@ public class Summary {
      * @return The total balance.
      */
     public double getTotalBalance() {
-        return getAvailableFunds() - totalSavings;
+        return getSpendableFunds() - totalSavings;
     }
 
     /**
@@ -88,8 +103,7 @@ public class Summary {
         }
         double oldIncome = this.totalIncome;
         this.totalIncome += income;
-        
-        // Assertion to verify income was added correctly
+
         assert this.totalIncome == oldIncome + income : "Income was not added correctly";
     }
 
@@ -119,8 +133,7 @@ public class Summary {
         
         double oldIncome = this.totalIncome;
         this.totalIncome -= income;
-        
-        // Assertion to verify income was removed correctly
+
         assert this.totalIncome == oldIncome - income : "Income was not removed correctly";
         assert this.totalIncome >= 0 : "Total income should never be negative after removal";
     }
@@ -145,8 +158,7 @@ public class Summary {
         
         double oldExpense = this.totalExpense;
         this.totalExpense += expense;
-        
-        // Assertion to verify expense was added correctly
+
         assert this.totalExpense == oldExpense + expense : "Expense was not added correctly";
     }
 
@@ -165,8 +177,7 @@ public class Summary {
         }
         double oldExpense = this.totalExpense;
         this.totalExpense -= expense;
-        
-        // Assertion to verify expense was removed correctly
+
         assert this.totalExpense == oldExpense - expense : "Expense was not removed correctly";
         assert this.totalExpense >= 0 : "Total expense should never be negative after removal";
     }
@@ -175,23 +186,21 @@ public class Summary {
      * Adds savings to the total savings.
      *
      * @param savings The amount of savings to add.
-     * @throws BudgetTrackerException If the savings are negative or greater than available funds.
+     * @throws BudgetTrackerException If the savings are negative or greater than spendable funds.
      */
     public void addSavings(double savings) throws BudgetTrackerException {
         if (savings < 0) {
             throw new BudgetTrackerException("Savings cannot be negative.");
         }
+
+        double spendableFunds = getSpendableFunds();
         
-        // Get available funds
-        double availableFunds = getAvailableFunds();
-        
-        if (savings > availableFunds) {
+        if (savings > spendableFunds) {
             throw new BudgetTrackerException("Savings cannot be greater than available funds.");
         }
         double oldSavings = this.totalSavings;
         this.totalSavings += savings;
-        
-        // Assertion to verify savings was added correctly
+
         assert this.totalSavings == oldSavings + savings : "Savings was not added correctly";
     }
 
@@ -210,8 +219,7 @@ public class Summary {
         }
         double oldSavings = this.totalSavings;
         this.totalSavings -= savings;
-        
-        // Assertion to verify savings was removed correctly
+
         assert this.totalSavings == oldSavings - savings : "Savings was not removed correctly";
         assert this.totalSavings >= 0 : "Total savings should never be negative after removal";
     }
