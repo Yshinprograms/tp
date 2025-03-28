@@ -28,7 +28,6 @@ savings goal view                                            Views all current s
 savings goal update <INDEX> / <AMOUNT> / <DESCRIPTION>       Updates an existing savings goal.
 savings goal delete <INDEX>                                  Deletes a savings goal by index.
 exit savings                                                 exited savings function
-transfer savings <FROM_INDEX> <TO_INDEX> <AMOUNT>            transfers a specified amount from one savings record to another.
 
 --- Funds Alerts ---
 alert set <AMOUNT>                                           Sets the warning threshold for low available funds.

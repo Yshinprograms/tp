@@ -147,9 +147,6 @@ public class Duke {
 
                 // Handle savings commands
                 if (fullCommand.contains("savings")) {
-                    if (summary.getTotalIncome() == 0) {
-                        throw new BudgetTrackerException("Income cannot be 0 if wish to add savings.");
-                    }
                     saving.run(fullCommand);
                     commandRecognized = true;
                 }
@@ -180,6 +177,4 @@ public class Duke {
             }
         }
     }
-
 }
-
