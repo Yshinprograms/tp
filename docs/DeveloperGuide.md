@@ -578,17 +578,6 @@ Command: `savings goal set 500 / new laptop`
    Savings goal set: $500.00 for new laptop
    ```
 
-#### Viewing Savings Goals
-Command: `savings goal view`
-
-   Expected:
-   ```
-   ===== SAVINGS GOALS =====
-   1.  $500.00 for new laptop (Current: $0.00)
-   2.  $1000.00 for holiday trip (Current: $0.00)
-   =========================
-   ```
-
 #### Updating Savings Goals
 Command: `savings goal update 1 600 / new laptop`
 
@@ -604,15 +593,6 @@ Command: `savings goal delete 1`
    ```
    Deleted savings goal: $600.00 for new laptop (now the saving goal for this entry is empty)
    ```
-
-#### Exiting Savings Mode
-Command: `exit savings`
-
-   Expected:
-   ```
-   Exited savings management
-   ```
-
 
 #### Viewing Help
 1. Command: `help`
