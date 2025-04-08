@@ -168,13 +168,13 @@ the main method will then call processSavingCommand() in SavingCommandHandler.ja
 will check if input contains other strings like "add savings", "delete savings", etc., then call
 the corresponding method to dealt with the input command.
 
-Saving sequence diagram: (below only used the execution of 1 method as example,
+Saving sequence diagram: (below only used the execution of 3 method as example,
 the sequence diagram of other methods are similar)
 ![Saving Sequence Diagram.png](images/SavingSequenceDiagram.png)
 
 Why it's implemented this way:
 1. Used a separate class to handle all commands related to saving records to reduce coupling
-2. Implemented run() method in Saving.java to improve the neatness of whole program
+2. Implemented SavingCommandHandler.java to improve the neatness of whole program
 
 The `getSavingsIndicator()` method calculates a savings indicator based on the total savings and the total income of the
 user. This indicator provides feedback to the user regarding their saving habits by categorizing them into three levels:

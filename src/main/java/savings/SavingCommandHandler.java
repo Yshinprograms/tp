@@ -9,6 +9,10 @@ public class SavingCommandHandler {
         this.saving = saving;
     }
 
+    /**
+     * Handles add savings input from user.
+     * @param input is user input.
+     */
     public void handleAddSavings(String input){
         try {
             String amountPart;
@@ -32,6 +36,10 @@ public class SavingCommandHandler {
         }
     }
 
+    /**
+     * Handles delete savings input from user.
+     * @param input is user input.
+     */
     public void handleDeleteSavings(String input) {
         try {
             if (saving.getSavingsRecords().isEmpty()) {
@@ -55,6 +63,10 @@ public class SavingCommandHandler {
         }
     }
 
+    /**
+     * Handles view savings input from user.
+     * @param input is user input.
+     */
     public void handleViewSavings(String input) {
         if (input.replaceFirst("view savings", "").trim().isEmpty()) {
             saving.viewSavings();
@@ -63,6 +75,10 @@ public class SavingCommandHandler {
         }
     }
 
+    /**
+     * Handles setting a savings goal input from user.
+     * @param input is user input.
+     */
     public void handleSetSavingsGoal(String input) {
         try {
             if (saving.getSavingsRecords().isEmpty()) {
@@ -103,7 +119,10 @@ public class SavingCommandHandler {
         }
     }
 
-
+    /**
+     * Handles delete savings goal input from user.
+     * @param input is user input.
+     */
     public void handleDeleteSavingsGoal(String input) {
         try {
             if (saving.getSavingsRecords().isEmpty()) {
@@ -136,6 +155,10 @@ public class SavingCommandHandler {
         }
     }
 
+    /**
+     * Handles transfer savings input from user.
+     * @param input is user input.
+     */
     public void handleTransferSavings(String input) {
         try {
             if (saving.getSavingsRecords().isEmpty()) {
@@ -153,6 +176,10 @@ public class SavingCommandHandler {
         }
     }
 
+    /**
+     * Handles update savings goal input from user.
+     * @param input is user input.
+     */
     public void handleUpdateSavingsGoal(String input) {
         try {
             if (saving.getSavingsRecords().isEmpty()) {
@@ -200,6 +227,9 @@ public class SavingCommandHandler {
         }
     }
 
+    /**
+     * Handles unknown command from user.
+     */
     public void handleUnknownCommand() {
         System.out.println("Unknown command.");
     }

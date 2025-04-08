@@ -385,8 +385,6 @@ view summary                                                 Lists all income, e
 
 --- Savings Goals ---
 savings goal set <AMOUNT> / <DESCRIPTION>                    Sets a new savings goal.
-savings goal view                                            Views all current 
-                                                             savings goals.
 savings goal update <INDEX> <AMOUNT> / <DESCRIPTION>         Updates an existing 
                                                              savings goal.
 savings goal delete <INDEX>                                  Deletes a savings goal 
