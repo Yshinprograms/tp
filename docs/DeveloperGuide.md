@@ -152,7 +152,7 @@ commands into individual classes.
 
 ### Savings Component
 The savings component is an important component of the Budget Tracker, and it allows
-students to add, delete, view saving amounts, and set, update, delete view savings goal
+students to add, delete, view saving amounts, and set, update, delete savings goal
 for each of the saving entry.
 
 #### API: Saving.java
@@ -163,18 +163,18 @@ Here's the class diagram of the Saving component:
 
 How the Saving component works:
 
-In the main method which is called Duke, when it detects input contains "savings" string,
+In the main method which is called execute(), when it detects input contains "savings" string,
 the main method will then call processSavingCommand() in SavingCommandHandler.java then the method 
 will check if input contains other strings like "add savings", "delete savings", etc., then call
 the corresponding method to dealt with the input command.
 
-Saving sequence diagram: (below only used the execution of 3 method as example,
+Saving sequence diagram: (below used the execution of 3 method as example,
 the sequence diagram of other methods are similar)
 ![Saving Sequence Diagram.png](images/SavingSequenceDiagram.png)
 
 Why it's implemented this way:
-1. Used a separate class to handle all commands related to saving records to reduce coupling
-2. Implemented SavingCommandHandler.java to improve the neatness of whole program
+1. Used separate classes to handle all commands related to saving records to reduce coupling
+2. Implemented SavingCommandHandler.java to improve the neatness of whole program and reduce coupling
 
 The `getSavingsIndicator()` method calculates a savings indicator based on the total savings and the total income of the
 user. This indicator provides feedback to the user regarding their saving habits by categorizing them into three levels:
